@@ -2,8 +2,8 @@ version: '1.0.0-{branch}-{build}'
 image: Visual Studio 2019
 init:
   - cmd: git config --global core.autocrlf true
-install:
-  - cmd: choco install codecov
+#install:
+#  - cmd: choco install codecov
 before_build:
   - cmd: dotnet --version
   - cmd: dotnet restore ./Microservices.sln --verbosity m

@@ -1,8 +1,10 @@
 # Microservices
+[![Build status](https://ci.appveyor.com/api/projects/status/44a7uctqaw3k15x0?svg=true)](https://ci.appveyor.com/project/Baldini/microservices)
 
 A sample to Microservices with .NET Core and some other libraries
 
-![Basic Diagram](https://raw.githubusercontent.com/Baldini/Microservices/master/Microservices.png?token=AB62UMWJ5J4P5LUTPLLF62S5KHNFM)
+[Basic Diagram](https://github.com/Baldini/Microservices/blob/master/Microservices.png)
+
 ---
 
 ## Support
