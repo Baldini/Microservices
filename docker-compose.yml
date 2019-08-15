@@ -1,0 +1,74 @@
+version: '3.4'
+
+services:
+  order.site:
+    image: ${DOCKER_REGISTRY-}ordersite
+    build:
+      context: .
+      dockerfile: src/Order.Site/Dockerfile
+
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: src/Order.API/Dockerfile
+
+
+  products.api:
+    image: ${DOCKER_REGISTRY-}productsapi
+    build:
+      context: .
+      dockerfile: src/Products/Dockerfile
+
+
+  finance.worker:
+    image: ${DOCKER_REGISTRY-}financeworker
+    build:
+      context: .
+      dockerfile: src/Finance.Worker/Dockerfile
+
+
+  order.orchestrator:
+    image: ${DOCKER_REGISTRY-}orderorchestrator
+    build:
+      context: .
+      dockerfile: src/Order.Orchestrator/Dockerfile
+
+
+  shipping.worker:
+    image: ${DOCKER_REGISTRY-}shippingworker
+    build:
+      context: .
+      dockerfile: src/Shipping.Worker/Dockerfile
+
+
+  warehouse.worker:
+    image: ${DOCKER_REGISTRY-}warehouseworker
+    build:
+      context: .
+      dockerfile: src/Warehouse.Worker/Dockerfile
+
+  rabbit:
+    image: rabbitmq:3-management-alpine
+    container_name: core.notification.queue
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
