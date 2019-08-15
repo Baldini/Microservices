@@ -1,0 +1,19 @@
+version: '1.0.0-{branch}-{build}'
+image: Visual Studio 2019
+init:
+  - cmd: git config --global core.autocrlf true
+install:
+  - cmd: choco install codecov
+before_build:
+  - cmd: dotnet --version
+  - cmd: dotnet restore ./Microservices.sln --verbosity m
+build_script:
+  - cmd: dotnet build ./Microservices.sln --configuration Release
+clone_depth: 1
+#test_script:
+#  - cmd: dotnet restore ./test/Flurl.Http.Protobuf.Tests/Flurl.Http.Protobuf.Tests.csproj --verbosity m
+#  - cmd: cd test/Flurl.Http.Protobuf.Tests
+#  - cmd: dotnet test /p:CollectCoverage=true /p:Exclude="[NUnit3.*]*" /p:Exclude="[*.Tests]*" /p:CoverletOutputFormat=opencover /p:CoverletOutput=../../coverage.opencover.xml
+#  - cmd: cd ../../
+#  - cmd: codecov -f "coverage.opencover.xml"
+on_finish :
